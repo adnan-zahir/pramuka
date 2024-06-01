@@ -39,13 +39,13 @@ export default async function Index() {
 						<CardGroup cols={2}>
 							<Card
 								num="01"
-								image="test"
+								image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.scout.id%2Fwp-content%2Fuploads%2F2019%2F11%2Fpramuka-penggalang-berseragam-tampak-gagah.jpg&f=1&nofb=1&ipt=6b12a7ad36f9441362f5a88cdb45509a396df5ff7b9a321d9b048aaa87d40bb8&ipo=images"
 								title="Article One"
 								url="test"
 							/>
 							<Card
 								num="02"
-								image="test"
+								image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Finspirasiguru.com%2Fwp-content%2Fuploads%2F2022%2F08%2Ff2baf7bb-6df3-43f7-b853-5a8b73d47e29.jpeg&f=1&nofb=1&ipt=0df6df5b394e638ad93ebe0363c761d00e14506f2ce026700d3a9d54774736cc&ipo=images"
 								title="Article Two"
 								url="test"
 							/>
@@ -56,14 +56,14 @@ export default async function Index() {
 						<CardGroup cols={2}>
 							<Card
 								num="01"
-								image="test"
+								image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.scout.id%2Fwp-content%2Fuploads%2F2019%2F12%2Fpramuka-penegak-putri-berseragam.jpg&f=1&nofb=1&ipt=bba105a379a82c9dba1a1529ff45cf306d53b87099cff6046c654b1c5d012b30&ipo=images"
 								title="Article One"
 								url="test"
 							/>
 							<Card
 								num="02"
-								image="test"
-								title="Article Two"
+								image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F1.bp.blogspot.com%2F-8ikuzJn5prA%2FWNaGgIzdYzI%2FAAAAAAAAREo%2FdvJUB7W3IcAmuHqg_hEbSTET6Tnfg1p3ACLcB%2Fs640%2Fpramuka.JPG&f=1&nofb=1&ipt=86b890d62a1c337baf02c5923576a5f7fea6be14407970bdbe1b4941259df144&ipo=images"
+								title="RUMPUT HEHEHE"
 								url="test"
 							/>
 						</CardGroup>
