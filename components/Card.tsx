@@ -1,11 +1,19 @@
-import LinkBtn from "./LinkBtn";
+import LinkBtn from './LinkBtn';
 
-export default function Card(
-  {num, image, title, url}:
-  {num: string, image: any, title: string, url: string}
-) {
-  return (
-    <div className="
+export default function Card({
+	num,
+	image,
+	title,
+	url,
+}: {
+	num: string;
+	image: any;
+	title: string;
+	url: string;
+}) {
+	return (
+		<div
+			className="
           relative
           flex
           flex-col
@@ -18,10 +26,15 @@ export default function Card(
           card-bg
           text-white
           before:pointer-events-none before:bg-gradient-to-b before:from-foreground/40 before:via-transparent before:to-black/50 before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0
-          " style={{ background: `url(${image})`, backgroundSize: 'cover' }}>
-      <div className="flex-1 self-start text-lg z-10">{num}</div>
-      <div className="text-sm z-10">{title}</div>
-      <LinkBtn className="z-10" href={url} />
-    </div>
-  )
+          "
+			style={{ background: `url(${image})`, backgroundSize: 'cover' }}
+		>
+			<div className="flex-1 self-start text-lg z-10">{num}</div>
+			<div className="text-sm z-10">{title}</div>
+			<LinkBtn
+				className="z-10"
+				href={url}
+			/>
+		</div>
+	);
 }
