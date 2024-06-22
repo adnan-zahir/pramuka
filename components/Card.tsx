@@ -25,7 +25,7 @@ export default function Card({
           overflow-clip
           card-bg
           text-white
-          before:pointer-events-none before:bg-gradient-to-b before:from-foreground/40 before:via-transparent before:to-black/50 before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0
+          before:pointer-events-none before:bg-gradient-to-b before:from-black/20 before:via-transparent before:to-black/50 before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0
           "
 			style={{ background: `url(${image})`, backgroundSize: 'cover' }}
 		>

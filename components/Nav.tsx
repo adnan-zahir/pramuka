@@ -6,7 +6,7 @@ import { useState } from 'react';
 import SideBar from './SideBar';
 
 export default function Nav() {
-	const [isNavOpen, setIsNavOpen] = useState(true);
+	const [isNavOpen, setIsNavOpen] = useState(false);
 
 	const toggleOpen = () => {
 		setIsNavOpen(!isNavOpen);

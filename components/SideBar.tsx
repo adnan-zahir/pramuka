@@ -1,5 +1,26 @@
 export default function SideBar({ isNavOpen }: { isNavOpen: boolean }) {
-	const menuList = ['Home', 'About', 'Gallery', 'Activity', 'Contact'];
+	const menuList = [
+		{
+			name: 'Beranda',
+			url: '/',
+		},
+		{
+			name: 'Kegiatan',
+			url: '/kegiatan',
+		},
+		{
+			name: 'Galeri',
+			url: '/galeri',
+		},
+		{
+			name: 'Tentang Kami',
+			url: '/tentang',
+		},
+		{
+			name: 'Kontak',
+			url: '/kontak',
+		},
+	];
 
 	return (
 		<div
@@ -10,12 +31,13 @@ export default function SideBar({ isNavOpen }: { isNavOpen: boolean }) {
 			<div className="h-16 w-full" />
 			{/* List Group */}
 			<div className="flex flex-col">
-				{menuList.map((list) => (
+				{menuList.map((list, i) => (
 					<a
-						href="#"
-						className="p-4 overflow-scroll border-b-2 border-solid border-b-background/50 transition-colors hover:bg-black/15"
+						key={i}
+						href={list.url}
+						className="p-4 overflow-ellipsis border-b-2 border-solid border-b-background/10 transition-colors hover:bg-black/55"
 					>
-						{list}
+						{list.name}
 					</a>
 				))}
 			</div>

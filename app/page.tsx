@@ -1,12 +1,9 @@
-import DeployButton from '../components/DeployButton';
-import AuthButton from '../components/AuthButton';
 import { createClient } from '@/utils/supabase/server';
-import ConnectSupabaseSteps from '@/components/tutorial/ConnectSupabaseSteps';
-import SignUpUserSteps from '@/components/tutorial/SignUpUserSteps';
-import Header from '@/components/Header';
+import Header from '@/components/sections/Header';
 import LandingSection from '@/components/LandingSection';
 import CardGroup from '@/components/CardGroup';
 import Card from '@/components/Card';
+import LinkBtn from '@/components/LinkBtn';
 
 export default async function Index() {
 	const canInitSupabaseClient = () => {
@@ -28,7 +25,7 @@ export default async function Index() {
 				<Header />
 				<main className="flex-1 flex flex-col">
 					{/* ACTIVITY */}
-					<LandingSection title="Kenali lebih dalam">
+					<LandingSection title="Berita dan Kegiatan">
 						<CardGroup cols={2}>
 							<Card
 								num="01"
@@ -45,7 +42,7 @@ export default async function Index() {
 						</CardGroup>
 					</LandingSection>
 					{/* GALLERY */}
-					<LandingSection title="Galeri kami">
+					<LandingSection title="Galeri Kami">
 						<CardGroup cols={2}>
 							<Card
 								num="01"
@@ -55,28 +52,97 @@ export default async function Index() {
 							/>
 							<Card
 								num="02"
-								image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F1.bp.blogspot.com%2F-8ikuzJn5prA%2FWNaGgIzdYzI%2FAAAAAAAAREo%2FdvJUB7W3IcAmuHqg_hEbSTET6Tnfg1p3ACLcB%2Fs640%2Fpramuka.JPG&f=1&nofb=1&ipt=86b890d62a1c337baf02c5923576a5f7fea6be14407970bdbe1b4941259df144&ipo=images"
-								title="RUMPUT HEHEHE"
+								image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F4.bp.blogspot.com%2F-Y3v9sXBW4s8%2FXNCiiEGkFoI%2FAAAAAAAAADw%2FvUp16OWNHa4vof-LMGYoKjHaiurLe9cMgCLcBGAs%2Fs1600%2Filustrasi-pramuka.jpg&f=1&nofb=1&ipt=6026130a8407ee152a2073a4dac8da599c2e46ecb215c40d947bcf462f5961a2&ipo=images"
+								title="Article Two"
 								url="test"
 							/>
 						</CardGroup>
 					</LandingSection>
+					<LandingSection
+						title="Kenali Dewan Ambalan"
+						bg="background"
+					>
+						<span className="my-2">Putra</span>
+						<CardGroup cols={3}>
+							<div
+								className="relative aspect-[3/4] rounded-lg p-2 flex items-end justify-center text-sm"
+								style={{
+									background:
+										'url(https://i.pinimg.com/564x/63/1d/a8/631da82db7aac2d658dcbebbca4fab53.jpg)',
+									backgroundSize: 'cover',
+									backgroundPosition: 'center top',
+								}}
+							>
+								<span>Pradana</span>
+							</div>
+							<div
+								className="relative aspect-[3/4] rounded-lg p-2 flex items-end justify-center text-sm"
+								style={{
+									background:
+										'url(https://i.pinimg.com/564x/63/1d/a8/631da82db7aac2d658dcbebbca4fab53.jpg)',
+									backgroundSize: 'cover',
+									backgroundPosition: 'center',
+								}}
+							>
+								<span>Kerani</span>
+							</div>
+							<div
+								className="relative aspect-[3/4] rounded-lg p-2 flex items-end justify-center text-sm"
+								style={{
+									background:
+										'url(https://i.pinimg.com/564x/63/1d/a8/631da82db7aac2d658dcbebbca4fab53.jpg)',
+									backgroundSize: 'cover',
+									backgroundPosition: 'center',
+								}}
+							>
+								<span>Hartaka</span>
+							</div>
+						</CardGroup>
+						<span className="my-2">Putri</span>
+						<CardGroup cols={3}>
+							<div
+								className="relative aspect-[3/4] rounded-lg p-2 flex items-end justify-center text-sm"
+								style={{
+									background:
+										'url(https://i.pinimg.com/564x/63/1d/a8/631da82db7aac2d658dcbebbca4fab53.jpg)',
+									backgroundSize: 'cover',
+									backgroundPosition: 'center',
+								}}
+							>
+								<span>Pradana</span>
+							</div>
+							<div
+								className="relative aspect-[3/4] rounded-lg p-2 flex items-end justify-center text-sm"
+								style={{
+									background:
+										'url(https://i.pinimg.com/564x/63/1d/a8/631da82db7aac2d658dcbebbca4fab53.jpg)',
+									backgroundSize: 'cover',
+									backgroundPosition: 'center',
+								}}
+							>
+								<span>Kerani</span>
+							</div>
+							<div
+								className="relative aspect-[3/4] rounded-lg p-2 flex items-end justify-center text-sm"
+								style={{
+									background:
+										'url(https://i.pinimg.com/564x/63/1d/a8/631da82db7aac2d658dcbebbca4fab53.jpg)',
+									backgroundSize: 'cover',
+									backgroundPosition: 'center',
+								}}
+							>
+								<span>Hartaka</span>
+							</div>
+						</CardGroup>
+						<div className="mx-auto mt-2">
+							<LinkBtn
+								href="/tentang"
+								text="Selengkapnya"
+							/>
+						</div>
+					</LandingSection>
 				</main>
 			</div>
-
-			<footer className="w-full bg-slate-300/70 border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
-				<p>
-					Copyright&copy; by{' '}
-					<a
-						href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-						target="_blank"
-						className="font-bold hover:underline"
-						rel="noreferrer"
-					>
-						Graha Pancaka
-					</a>
-				</p>
-			</footer>
 		</div>
 	);
 }
