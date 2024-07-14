@@ -6,8 +6,14 @@ import { Image } from "@nextui-org/image";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { InstagramIcon } from "@/components/icons";
+import { createClient } from "@/utils/supabase/server";
+import { DBKegiatan } from "@/types";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = createClient();
+  const { data } = await supabase.from("kegiatans").select().range(0, 1);
+  const kegiatans = data as DBKegiatan[];
+
   return (
     <>
       {/* HERO::START */}
@@ -47,11 +53,11 @@ export default function Home() {
       {/* KEGIATAN::START */}
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         <div className="inline-block max-w-lg text-center justify-center">
-          <h1 className={title()}>Kegiatan</h1>
+          <h1 className={title()}>{siteConfig.navMenuItems[1].label}</h1>
         </div>
 
         <div className="flex flex-wrap gap-3">
-          {siteConfig.kegiatans.map((kegiatan, i) => (
+          {kegiatans.map((kegiatan, i) => (
             <Card
               key={i}
               isFooterBlurred
@@ -62,7 +68,7 @@ export default function Home() {
                 removeWrapper
                 alt="Kegiatan kepramukaan"
                 className="w-full h-full object-cover aspect-square"
-                src={kegiatan.image}
+                src={kegiatan.imageUrl}
               />
               <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
                 <p className="text-tiny text-white/80">{kegiatan.name}</p>
@@ -74,7 +80,7 @@ export default function Home() {
                     size: "sm",
                     className: "text-tiny text-white bg-black/20",
                   })}
-                  href="#"
+                  href={`kegiatan/${kegiatan.id}`}
                 >
                   Lihat
                 </Link>
@@ -83,14 +89,14 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="flex gap-3">
+        <div>
           <Link
             className={buttonStyles({
               color: "default",
               radius: "full",
               variant: "shadow",
             })}
-            href="#"
+            href={siteConfig.navMenuItems[1].href}
           >
             Selengkapnya
           </Link>
@@ -100,17 +106,17 @@ export default function Home() {
       {/* GALERI::START */}
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         <div className="inline-block max-w-lg text-center justify-center">
-          <h1 className={title()}>Galeri</h1>
+          <h1 className={title()}>{siteConfig.navMenuItems[2].label}</h1>
         </div>
 
-        <div className="flex gap-3">
+        <div>
           <Link
             className={buttonStyles({
               color: "default",
               radius: "full",
               variant: "shadow",
             })}
-            href="#"
+            href={siteConfig.navMenuItems[2].href}
           >
             Selengkapnya
           </Link>
