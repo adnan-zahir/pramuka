@@ -6,24 +6,24 @@ export const siteConfig = {
     "Lihat kumpulan aktifitas dan galeri kami di gerakan pramuka graha pancaka. Bersatu, Berjuang, Menang!",
   navItems: [
     {
-      label: "Home",
+      label: "Beranda",
       href: "/",
     },
     {
-      label: "Docs",
-      href: "/docs",
+      label: "Kegiatan",
+      href: "/kegiatan",
     },
     {
-      label: "Pricing",
-      href: "/pricing",
+      label: "Galeri",
+      href: "/galeri",
     },
     {
-      label: "Blog",
-      href: "/blog",
+      label: "Tentang",
+      href: "/tentang",
     },
     {
-      label: "About",
-      href: "/about",
+      label: "Kontak",
+      href: "/kontak",
     },
   ],
   navMenuItems: [

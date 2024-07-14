@@ -1,6 +1,7 @@
 import { Image } from "@nextui-org/image";
 // eslint-disable-next-line unused-imports/no-unused-imports
 import { Snippet } from "@nextui-org/snippet";
+import { Divider } from "@nextui-org/divider";
 
 import { title } from "@/components/primitives";
 import { DBKegiatan, DBParagraph, paragraphType } from "@/types";
@@ -25,29 +26,33 @@ export default async function KegiatanDetail({
       <div className="inline-block max-w-lg text-center justify-center">
         <h1 className={title()}>{kegiatan.name}</h1>
       </div>
+      <Divider />
       <Image
         isBlurred
         alt={kegiatan.name}
         className="w-full"
         src={kegiatan.imageUrl}
       />
-      {kegiatan.paragraph
-        .sort((a, b) => a.no - b.no)
-        .map((p: DBParagraph, i) => (
-          <>
-            {p.type == paragraphType.REGULAR && <p key={i}>{p.text}</p>}
-            {p.type == paragraphType.QUOTE && (
-              <Snippet
-                key={i}
-                hideCopyButton
-                hideSymbol
-                className="custom-quote"
-              >
-                {p.text}
-              </Snippet>
-            )}
-          </>
-        ))}
+      <Divider />
+      <div className="text-justify flex flex-col gap-8 md:gap-10">
+        {kegiatan.paragraph
+          .sort((a, b) => a.no - b.no)
+          .map((p: DBParagraph, i) => (
+            <>
+              {p.type == paragraphType.REGULAR && <p key={i}>{p.text}</p>}
+              {p.type == paragraphType.QUOTE && (
+                <Snippet
+                  key={i}
+                  hideCopyButton
+                  hideSymbol
+                  className="custom-quote"
+                >
+                  {p.text}
+                </Snippet>
+              )}
+            </>
+          ))}
+      </div>
     </section>
   );
 }

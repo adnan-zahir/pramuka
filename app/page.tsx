@@ -2,6 +2,7 @@ import { Link } from "@nextui-org/link";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { Card, CardFooter } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
+import { Divider } from "@nextui-org/divider";
 
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
@@ -11,8 +12,13 @@ import { DBKegiatan } from "@/types";
 
 export default async function Home() {
   const supabase = createClient();
-  const { data } = await supabase.from("kegiatans").select().range(0, 1);
+  const { data } = await supabase
+    .from("kegiatans")
+    .select()
+    .order("date", { ascending: false })
+    .limit(2);
   const kegiatans = data as DBKegiatan[];
+  const latest = kegiatans[0];
 
   return (
     <>
@@ -20,11 +26,14 @@ export default async function Home() {
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         <div className="inline-block max-w-lg text-center justify-center">
           <h2 className={subtitle()}>Terbaru</h2>
-          <h1 className={title()}>Pengembaraan</h1>
+          <h2 className={subtitle({ className: "!text-sm" })}>
+            {latest.date.toString()}
+          </h2>
+          <h1 className={title()}>{latest.name}</h1>
           <br />
           <h2 className={subtitle({ class: "mt-4" })}>
-            Lihat serunya kami mengembara gunung dan hutan untuk eksplorasi
-            berbagai macam flora dan fauna!
+            Lihat serunya kegiatan terbaru kami, atau kalian bisa lihat kegiatan
+            menarik lainnya juga!
           </h2>
         </div>
 
@@ -35,7 +44,7 @@ export default async function Home() {
               radius: "full",
               variant: "shadow",
             })}
-            href="#"
+            href={`/kegiatan/${latest.id}`}
           >
             Lihat
           </Link>
@@ -55,6 +64,7 @@ export default async function Home() {
         <div className="inline-block max-w-lg text-center justify-center">
           <h1 className={title()}>{siteConfig.navMenuItems[1].label}</h1>
         </div>
+        <Divider />
 
         <div className="flex flex-wrap gap-3">
           {kegiatans.map((kegiatan, i) => (
@@ -108,6 +118,7 @@ export default async function Home() {
         <div className="inline-block max-w-lg text-center justify-center">
           <h1 className={title()}>{siteConfig.navMenuItems[2].label}</h1>
         </div>
+        <Divider />
 
         <div>
           <Link

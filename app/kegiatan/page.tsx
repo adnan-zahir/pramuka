@@ -11,7 +11,8 @@ export default async function KegiatanPage() {
   const { data } = await supabase
     .from("kegiatans")
     .select("*, paragraph:paragraph (text)")
-    .eq("paragraph.no", 1);
+    .eq("paragraph.no", 1)
+    .order("date", { ascending: false });
   const kegiatans = data as unknown as DBKegiatan[];
 
   return (
@@ -25,30 +26,33 @@ export default async function KegiatanPage() {
           </h2>
         </div>
       </section>
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-        <div className="flex flex-col max-w-lg text-center justify-center gap-4">
+      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 w-full">
+        <div className="flex flex-wrap text-center justify-center gap-4">
           {kegiatans?.map((kegiatan, i) => (
             <Link
               key={`${i}. ${kegiatan.name}`}
+              className="max-w-80 w-full"
               href={`kegiatan/${kegiatan.id}`}
             >
               <Card>
                 <Image
                   removeWrapper
                   alt="Thumbnail"
-                  className="h-full aspect-video object-cover"
+                  className="w-full aspect-video object-cover"
                   radius="sm"
                   src={kegiatan.imageUrl}
                 />
                 <CardHeader>
-                  <span className={title({ size: "sm" })}>{kegiatan.name}</span>
+                  <span className={title({ className: "!text-xl" })}>
+                    {kegiatan.name}
+                  </span>
                 </CardHeader>
                 <CardBody>
-                  <p>{kegiatan.paragraph[0].text.substring(0, 200) + "..."}</p>
+                  <p>{kegiatan.paragraph[0].text.substring(0, 100) + "..."}</p>
                 </CardBody>
                 <CardFooter>
                   <span
-                    className={subtitle({ className: "text-sm text-right" })}
+                    className={subtitle({ className: "!text-sm text-right" })}
                   >
                     {kegiatan.date.toString()}
                   </span>
