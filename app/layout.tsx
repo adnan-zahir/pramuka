@@ -47,16 +47,22 @@ export default function RootLayout({
             <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
               {children}
             </main>
-            <footer className="w-full flex items-center justify-center py-3">
-              <Link
-                isExternal
-                className="flex items-center gap-1 text-current"
-                href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-                title="nextui.org homepage"
-              >
-                <span className="text-default-600">Powered by</span>
-                <p className="text-primary">NextUI</p>
-              </Link>
+            <footer className="w-full flex items-center justify-center">
+              <div className="w-full flex flex-col items-center justify-center bg-default-300 py-3">
+                <div className="flex items-center gap-1 text-current">
+                  <span className="text-default-600">Property of</span>
+                  <p className="text-primary">Pramuka Graha Pancaka</p>
+                </div>
+                <Link
+                  isExternal
+                  className="flex items-center gap-1 text-current"
+                  href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
+                  title="nextui.org homepage"
+                >
+                  <span className="text-default-600">Powered by</span>
+                  <p className="text-primary">NextUI</p>
+                </Link>
+              </div>
             </footer>
           </div>
         </Providers>
