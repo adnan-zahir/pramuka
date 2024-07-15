@@ -55,20 +55,26 @@ export const siteConfig = {
   links: {
     instagram: "https://www.instagram.com/pramukasmkn2bdg/",
   },
-  kegiatans: [
+  galeris: [
     {
-      name: "Pelantikan",
+      name: "First",
       image:
-        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdarunnajah.com%2Fwp-content%2Fuploads%2F2021%2F03%2FWhatsApp-Image-2021-03-25-at-20.59.31.jpeg&f=1&nofb=1&ipt=f3cf54b47307e8ab86ff31701f08fe72c7430b6d31b208c47db889de84fb8f21&ipo=images",
-      link: "#",
-      date: "01/02/23",
+        "https://drive.google.com/file/d/1rvrcfbOU56PKm5ZxkW2YSxRDQ2xJ7x_v/view?usp=drive_link",
     },
     {
-      name: "Lomba",
+      name: "Second",
       image:
-        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FyYxK97ERAq0%2Fmaxresdefault.jpg&f=1&nofb=1&ipt=daf092652366e9a83cad64dd0f076d30e2f49c1720ee0299d84cd5080240cc65&ipo=images",
-      link: "#",
-      date: "02/03/24",
+        "https://drive.google.com/file/d/13wA0uFpX0dzVAyDDy91Elj-HCOWRjWI6/view?usp=drive_link",
+    },
+    {
+      name: "Third",
+      image:
+        "https://drive.google.com/file/d/13wvu5E85LkQvVHTGg5f00IhNvSpYmg6v/view?usp=drive_link",
+    },
+    {
+      name: "Fourth",
+      image:
+        "https://drive.google.com/file/d/1407cy72KlC4mgRksfBiNToY3EYZ3A_3h/view?usp=drive_link",
     },
   ],
 };

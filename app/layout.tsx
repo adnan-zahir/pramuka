@@ -66,7 +66,7 @@ export default function RootLayout({
                     Informasi Kontak
                   </span>
                   <span>Instagram</span>
-                  <span>@pramukasmkn2bandung</span>
+                  <span>@pramukasmkn2bdg</span>
                   <span>Email</span>
                   <span>grahapancaka@gmail.com</span>
                 </div>
