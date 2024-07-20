@@ -6,13 +6,17 @@ import {
   InstagramIcon,
   Logo,
   TikTokIcon,
+  WhatsappIcon,
   YoutubeIcon,
 } from "../icons";
 import { subtitle, title } from "../primitives";
 
+import { siteConfig } from "@/config/site";
+import { formatPhoneNumber } from "@/utils";
+
 export default function Footer() {
   return (
-    <div className="bg-default-100 w-full py-6">
+    <div className="bg-default-100 w-full py-6 px-4">
       <div className="flex flex-col gap-4 items-center max-w-2xl mx-auto">
         {/* PENUTUP */}
         <div className="w-full text-center md:text-left">
@@ -27,14 +31,15 @@ export default function Footer() {
           <p className={subtitle({ size: "sm" })}>Bersatu, Berjuang, Menang!</p>
         </div>
         {/* MEDIA SOSIAL */}
-        <div className="flex gap-4 text-current self-start">
+        <div className="flex gap-4 text-current md:self-start">
           <InstagramIcon size={32} />
+          <WhatsappIcon size={32} />
           <GmailIcon size={32} />
           <TikTokIcon size={32} />
           <YoutubeIcon size={32} />
         </div>
         <Divider />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* ABOUT US */}
           <div>
             <span className={title({ size: "xs" })}>Tentang Kami</span>
@@ -52,8 +57,9 @@ export default function Footer() {
           </div>
           <div>
             <p className={title({ size: "xs" })}>Informasi Kontak</p>
+            <p>@pramukasmkn2bdg</p>
             <p>grahapancaka@gmail.com</p>
-            <p>(+62)8xx-xxxx-xxxx</p>
+            <p>{formatPhoneNumber(siteConfig.socials.whatsapp)}</p>
           </div>
         </div>
         <Divider />

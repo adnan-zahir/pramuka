@@ -55,6 +55,10 @@ export const siteConfig = {
   links: {
     instagram: "https://www.instagram.com/pramukasmkn2bdg/",
   },
+  socials: {
+    gmail: "grahapancaka@gmail.com",
+    whatsapp: "6285172232696",
+  },
   galeris: [
     {
       name: "First",

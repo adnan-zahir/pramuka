@@ -5,6 +5,8 @@ import { Link } from "@nextui-org/link";
 import { title, subtitle } from "@/components/primitives";
 import { createClient } from "@/utils/supabase/server";
 import { DBKegiatan } from "@/types";
+import { Section } from "@/components/section";
+import { TitleContainer } from "@/components/titlecountainer";
 
 export default async function KegiatanPage() {
   const supabase = createClient();
@@ -17,16 +19,16 @@ export default async function KegiatanPage() {
 
   return (
     <>
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-        <div className="inline-block max-w-lg text-center justify-center">
+      <Section>
+        <TitleContainer>
           <h1 className={title()}>Kegiatan</h1>
           <h2 className={subtitle()}>
             Telusuri berbagai kegiatan kami di sini! Simak blog kami untuk
             mengikuti jejak eksplorasi dan serunya aktifitas Graha Pancaka.
           </h2>
-        </div>
-      </section>
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 w-full">
+        </TitleContainer>
+      </Section>
+      <Section>
         <div className="flex flex-wrap text-center justify-center gap-4">
           {kegiatans?.map((kegiatan, i) => (
             <Link
@@ -61,7 +63,7 @@ export default async function KegiatanPage() {
             </Link>
           ))}
         </div>
-      </section>
+      </Section>
     </>
   );
 }

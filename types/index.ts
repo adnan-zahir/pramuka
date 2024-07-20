@@ -22,3 +22,14 @@ export interface DBKegiatan {
   imageUrl: string;
   paragraph: DBParagraph[];
 }
+
+export interface EmailFormData {
+  name: string;
+  subject: string;
+  text: string;
+}
+
+export interface WhatsappFormData {
+  name: string;
+  text: string;
+}

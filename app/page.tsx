@@ -9,6 +9,8 @@ import { createClient } from "@/utils/supabase/server";
 import { DBKegiatan } from "@/types";
 import Kegiatan from "@/components/sections/kegiatan";
 import Galeri from "@/components/sections/galeri";
+import { Section } from "@/components/section";
+import { TitleContainer } from "@/components/titlecountainer";
 
 export default async function Home() {
   const supabase = createClient();
@@ -23,7 +25,7 @@ export default async function Home() {
   return (
     <>
       {/* HERO::START */}
-      <section className="relative flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+      <Section className="relative">
         <div className="absolute inset-0 -mx-6 overflow-hidden">
           <Image
             removeWrapper
@@ -33,7 +35,7 @@ export default async function Home() {
             src={latest.imageUrl}
           />
         </div>
-        <div className="inline-block max-w-lg z-10">
+        <TitleContainer className="z-10">
           <div className="font-semibold flex flex-col items-center h-full w-full bg-default-100 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50 border border-gray-100/20 shadow-xl p-4 text-center">
             <h2 className={subtitle()}>Terbaru</h2>
             <h2 className={subtitle({ className: "!text-sm" })}>
@@ -71,18 +73,18 @@ export default async function Home() {
               </Link>
             </div>
           </div>
-        </div>
-      </section>
+        </TitleContainer>
+      </Section>
       {/* HERO::END */}
       {/* KEGIATAN::START */}
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+      <Section>
         <Kegiatan kegiatans={kegiatans} />
-      </section>
+      </Section>
       {/* KEGIATAN::END */}
       {/* GALERI::START */}
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+      <Section>
         <Galeri />
-      </section>
+      </Section>
       {/* GALERI::END */}
     </>
   );

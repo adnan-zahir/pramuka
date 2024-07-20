@@ -6,6 +6,8 @@ import { Divider } from "@nextui-org/divider";
 import { title } from "@/components/primitives";
 import { DBKegiatan, DBParagraph, paragraphType } from "@/types";
 import { createClient } from "@/utils/supabase/server";
+import { Section } from "@/components/section";
+import { TitleContainer } from "@/components/titlecountainer";
 
 export default async function KegiatanDetail({
   params,
@@ -22,10 +24,10 @@ export default async function KegiatanDetail({
   const kegiatan = kegiatans[0];
 
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-lg text-center justify-center">
+    <Section>
+      <TitleContainer>
         <h1 className={title()}>{kegiatan.name}</h1>
-      </div>
+      </TitleContainer>
       <Divider />
       <Image
         isBlurred
@@ -53,6 +55,6 @@ export default async function KegiatanDetail({
             </>
           ))}
       </div>
-    </section>
+    </Section>
   );
 }
