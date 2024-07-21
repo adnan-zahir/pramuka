@@ -25,7 +25,7 @@ export default async function Home() {
   return (
     <>
       {/* HERO::START */}
-      <Section className="relative">
+      <Section className="relative md:min-h-[60vh]">
         <div className="absolute inset-0 -mx-6 overflow-hidden">
           <Image
             removeWrapper

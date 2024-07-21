@@ -14,11 +14,19 @@ import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
 
+import { LogoutButton } from "./logoutbutton";
+
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { InstagramIcon, SearchIcon, Logo } from "@/components/icons";
+import { createClient } from "@/utils/supabase/server";
 
-export const Navbar = () => {
+export const Navbar = async () => {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   const searchInput = (
     <Input
       aria-label="Search"
@@ -82,6 +90,15 @@ export const Navbar = () => {
           <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
+        <NavbarItem>
+          {user ? (
+            <LogoutButton />
+          ) : (
+            <Link color="success" href="/login" size="lg">
+              Login
+            </Link>
+          )}
+        </NavbarItem>
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
@@ -98,13 +115,7 @@ export const Navbar = () => {
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
-                }
+                color={index === 1 ? "primary" : "foreground"}
                 href={item.href}
                 size="lg"
               >
@@ -112,6 +123,15 @@ export const Navbar = () => {
               </Link>
             </NavbarMenuItem>
           ))}
+          <NavbarMenuItem>
+            {user ? (
+              <LogoutButton />
+            ) : (
+              <Link color="success" href="/login" size="lg">
+                Login
+              </Link>
+            )}
+          </NavbarMenuItem>
         </div>
       </NavbarMenu>
     </NextUINavbar>

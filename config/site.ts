@@ -47,10 +47,6 @@ export const siteConfig = {
       label: "Kontak",
       href: "/kontak",
     },
-    {
-      label: "Logout",
-      href: "/logout",
-    },
   ],
   links: {
     instagram: "https://www.instagram.com/pramukasmkn2bdg/",
