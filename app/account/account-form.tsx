@@ -30,7 +30,6 @@ export default function AccountForm({ user }: { user: User | null }) {
         .single();
 
       if (error && status !== 406) {
-        console.error(error);
         throw error;
       }
 
@@ -41,7 +40,7 @@ export default function AccountForm({ user }: { user: User | null }) {
         setAvatarUrl(data.avatar_url);
       }
     } catch (error) {
-      alert("Error loading user data!");
+      alert("Error loading user data!" + error);
     } finally {
       setLoading(false);
     }
