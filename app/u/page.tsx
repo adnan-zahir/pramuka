@@ -39,7 +39,7 @@ export default function Login() {
             Sign In
           </Button>
           <Button as={Link} href="/signup" className="min-w-40" color="primary" variant="bordered">
-            Sign Up
+            Sign In
           </Button>
           <Messages />
         </form>

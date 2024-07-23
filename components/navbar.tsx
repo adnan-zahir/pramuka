@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -19,13 +21,10 @@ import { LogoutButton } from "./logoutbutton";
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { InstagramIcon, SearchIcon, Logo } from "@/components/icons";
-import { createClient } from "@/utils/supabase/server";
+import { useState } from "react";
 
-export const Navbar = async () => {
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+export const Navbar = ({ user }: { user: any }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const searchInput = (
     <Input
@@ -49,7 +48,7 @@ export const Navbar = async () => {
   );
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky">
+    <NextUINavbar isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
@@ -118,6 +117,7 @@ export const Navbar = async () => {
                 color={index === 1 ? "primary" : "foreground"}
                 href={item.href}
                 size="lg"
+                onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
               </Link>

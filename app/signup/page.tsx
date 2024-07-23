@@ -1,6 +1,6 @@
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
-import { Link } from "@nextui-org/link";
+import { button } from "@nextui-org/theme";
 
 import Messages from "./messages";
 
@@ -12,11 +12,11 @@ export default function Login() {
   return (
     <Section>
       <TitleContainer>
-        <h2 className={title()}>Masuk Akun</h2>
+        <h2 className={title()}>Daftar Akun</h2>
       </TitleContainer>
       <div className="grid place-items-center min-h-[60vh] w-full">
         <form
-          action="/auth/sign-in"
+          action="/auth/sign-up"
           className="flex w-full max-w-lg flex-col items-center gap-2"
           method="post"
         >
@@ -35,10 +35,15 @@ export default function Login() {
             placeholder="••••••••"
             type="password"
           />
-          <Button className="min-w-40" color="success" type="submit">
-            Sign In
-          </Button>
-          <Button as={Link} href="/signup" className="min-w-40" color="primary" variant="bordered">
+          <Input
+            isRequired
+            required
+            label="OTP"
+            name="otp"
+            placeholder="XXXXXX"
+            type="text"
+          />
+          <Button className="min-w-40" color="primary" type="submit">
             Sign Up
           </Button>
           <Messages />

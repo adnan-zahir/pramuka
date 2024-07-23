@@ -9,6 +9,13 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number;
 };
 
+export interface DBOTP {
+  id: string;
+  otp: string;
+  email: string;
+  expires_at: Date;
+}
+
 export interface DBParagraph {
   text: string;
   no: number;
