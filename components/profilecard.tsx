@@ -21,7 +21,7 @@ export const ProfileCard = ({ profile }: { profile: Props }) => {
   return (
     <Card isBlurred>
       <CardHeader className="flex-col items-center">
-        <h2 className={subtitle({ className: "text-center" })}>"{profile.julukan}"</h2>
+        <h2 className={subtitle({ className: "text-center" })}>&ldquo;{profile.julukan}&rdquo;</h2>
         <ShowAvatar size={150} url={profile.avatar_url} />
       </CardHeader>
       <CardBody>
