@@ -8,7 +8,9 @@ import { TitleContainer } from "@/components/titlecountainer";
 import { Section } from "@/components/section";
 import { subtitle, title } from "@/components/primitives";
 
-export default function Login() {
+export const dynamic = "force-dynamic";
+
+export default async function Login() {
   return (
     <Section className="md:flex-row md:justify-around md:items-start">
       <Section className="hidden md:block">

@@ -1,6 +1,5 @@
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
-import { button } from "@nextui-org/theme";
 
 import Messages from "./messages";
 
@@ -8,7 +7,9 @@ import { TitleContainer } from "@/components/titlecountainer";
 import { Section } from "@/components/section";
 import { title } from "@/components/primitives";
 
-export default function Login() {
+export const dynamic = "force-dynamic";
+
+export default async function Login() {
   return (
     <Section>
       <TitleContainer>
