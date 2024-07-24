@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { createClient } from "@/utils/supabase/server";
+import { siteConfig } from "@/config/site";
 
 export const dynamic = "force-dynamic";
 
@@ -26,7 +27,7 @@ export async function POST(request: Request) {
     );
   }
 
-  return NextResponse.redirect(`${requestUrl.origin}/u/account`, {
+  return NextResponse.redirect(`${requestUrl.origin}${siteConfig.redirects.afterLogin}`, {
     // a 301 status is required to redirect from a POST to a GET route
     status: 301,
   });

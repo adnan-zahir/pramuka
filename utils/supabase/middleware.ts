@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
@@ -30,7 +31,10 @@ export async function updateSession(request: NextRequest) {
   );
 
   // refreshing the auth token
-  await supabase.auth.getUser();
+  // protecting route
+  const { data: { user }, error } = await supabase.auth.getUser();
+
+  if ((error || !user) && request.nextUrl.pathname.startsWith(siteConfig.protectedRoutes.userOnly)) return NextResponse.redirect(new URL('/login', request.url));
 
   return supabaseResponse;
 }

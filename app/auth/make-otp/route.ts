@@ -29,7 +29,7 @@ export async function POST(request: Request) {
 
   if (error) {
     return NextResponse.redirect(
-      `${requestUrl.origin}/u/a/otp?error=Cannot generate OTP`,
+      `${requestUrl.origin}/usr/a/otp?error=Cannot generate OTP`,
       {
         // a 301 status is required to redirect from a POST to a GET route
         status: 301,
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
     );
   }
 
-  return NextResponse.redirect(`${requestUrl.origin}/u/a/otp?message=GENERATED OTP : ${generatedOTP.otp}`, {
+  return NextResponse.redirect(`${requestUrl.origin}/usr/a/otp?message=GENERATED OTP : ${generatedOTP.otp}`, {
     // a 301 status is required to redirect from a POST to a GET route
     status: 301,
   });

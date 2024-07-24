@@ -9,3 +9,28 @@
   white-space: -o-pre-wrap !important;    /* Opera 7 */
   word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
 }
+
+/*body {*/
+/*    background: linear-gradient(271deg, var(--nextui-background), #0c1b2f, var(--nextui-background), #000e1c, var(--nextui-background));*/
+/*    background-size: 1200% 1200%;*/
+/**/
+/*    -webkit-animation: AnimationName 100s ease infinite;*/
+/*    -moz-animation: AnimationName 100s ease infinite;*/
+/*    animation: AnimationName 100s ease infinite;*/
+/*}*/
+/**/
+/*@-webkit-keyframes AnimationName {*/
+/*    0%{background-position:0% 50%}*/
+/*    50%{background-position:100% 50%}*/
+/*    100%{background-position:0% 50%}*/
+/*}*/
+/*@-moz-keyframes AnimationName {*/
+/*    0%{background-position:0% 50%}*/
+/*    50%{background-position:100% 50%}*/
+/*    100%{background-position:0% 50%}*/
+/*}*/
+/*@keyframes AnimationName {*/
+/*    0%{background-position:0% 50%}*/
+/*    50%{background-position:100% 50%}*/
+/*    100%{background-position:0% 50%}*/
+/*}*/

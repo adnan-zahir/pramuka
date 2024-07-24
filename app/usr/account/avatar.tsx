@@ -13,7 +13,7 @@ export default function Avatar({
   uid: string | null;
   url: string | null;
   size: number;
-  onUpload: (url: string) => void;
+  onUpload?: (url: string) => void;
 }) {
   const supabase = createClient();
   const [avatarUrl, setAvatarUrl] = useState<string | null>(url);
@@ -63,7 +63,7 @@ export default function Avatar({
         throw uploadError;
       }
 
-      onUpload(filePath);
+      !!onUpload ? onUpload(filePath) : null;
     } catch (error) {
       alert("Error uploading avatar!");
     } finally {
@@ -88,22 +88,24 @@ export default function Avatar({
           style={{ height: size, width: size }}
         />
       )}
-      <div style={{ width: size }}>
-        <label className="button primary block" htmlFor="single">
-          {uploading ? "Uploading ..." : "Upload"}
-        </label>
-        <input
-          accept="image/*"
-          disabled={uploading}
-          id="single"
-          style={{
-            visibility: "hidden",
-            position: "absolute",
-          }}
-          type="file"
-          onChange={uploadAvatar}
-        />
-      </div>
+      {onUpload ?
+        (
+          <div style={{ width: size }}>
+            <label className="button primary block" htmlFor="single">
+              {uploading ? "Uploading ..." : "Upload"}
+            </label>
+            <input
+              accept="image/*"
+              disabled={uploading}
+              id="single"
+              style={{
+                visibility: "hidden",
+                position: "absolute",
+              }}
+              type="file"
+              onChange={uploadAvatar}
+            />
+          </div>) : ""}
     </div>
   );
 }

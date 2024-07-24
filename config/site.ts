@@ -77,4 +77,11 @@ export const siteConfig = {
         "https://drive.google.com/file/d/1407cy72KlC4mgRksfBiNToY3EYZ3A_3h/view?usp=drive_link",
     },
   ],
+  redirects: {
+    afterLogin: "/usr"
+  },
+  protectedRoutes: {
+    userOnly: "/usr",
+    adminOnly: "/usr/a"
+  }
 };

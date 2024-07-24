@@ -21,10 +21,19 @@ import { LogoutButton } from "./logoutbutton";
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { InstagramIcon, SearchIcon, Logo } from "@/components/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createClient } from "@/utils/supabase/client";
 
-export const Navbar = ({ user }: { user: any }) => {
+export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user, setUser] = useState(false);
+
+  useEffect(() => {
+    const supabase = createClient();
+
+    supabase.auth.getUser()
+      .then(({ data: { user } }) => setUser(!!user))
+  }, [])
 
   const searchInput = (
     <Input
@@ -56,7 +65,7 @@ export const Navbar = ({ user }: { user: any }) => {
             <p className="font-bold text-inherit">Graha Pancaka</p>
           </NextLink>
         </NavbarBrand>
-        <ul className="hidden lg:flex gap-4 justify-start ml-2">
+        <ul className="hidden sm:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <NextLink
@@ -81,8 +90,9 @@ export const Navbar = ({ user }: { user: any }) => {
         <NavbarItem className="hidden sm:flex gap-2">
           <Link
             isExternal
-            aria-label="Github"
+            aria-label="Instagram"
             href={siteConfig.links.instagram}
+            className="hidden md:flex"
           >
             <InstagramIcon className="text-default-500" />
           </Link>
@@ -101,7 +111,7 @@ export const Navbar = ({ user }: { user: any }) => {
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <Link isExternal aria-label="Github" href={siteConfig.links.instagram}>
+        <Link isExternal aria-label="Instagram" href={siteConfig.links.instagram}>
           <InstagramIcon className="text-default-500" />
         </Link>
         <ThemeSwitch />
@@ -125,9 +135,9 @@ export const Navbar = ({ user }: { user: any }) => {
           ))}
           <NavbarMenuItem>
             {user ? (
-              <LogoutButton />
+              <LogoutButton onClick={() => setIsMenuOpen(false)} />
             ) : (
-              <Link color="success" href="/login" size="lg">
+              <Link color="success" href="/login" size="lg" onClick={() => setIsMenuOpen(false)}>
                 Login
               </Link>
             )}
