@@ -1,27 +1,19 @@
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card"
-import { ShowAvatar } from "./showavatar"
-import { subtitle } from "./primitives"
-import { Button } from "@nextui-org/button"
+import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
+import { Button } from "@nextui-org/button";
+import { Link } from "@nextui-org/link";
 
-interface Props {
-  nama_lengkap: string;
-  no_tamu: string;
-  nta: string;
-  tingkatan: string;
-  tempat_lahir: string;
-  tanggal_lahir: string;
-  jenis_kelamin: string;
-  golongan_darah: string;
-  no_hp: string;
-  julukan: string;
-  avatar_url: string;
-}
+import { ShowAvatar } from "./showavatar";
+import { subtitle } from "./primitives";
 
-export const ProfileCard = ({ profile }: { profile: Props }) => {
+import { Profile } from "@/types";
+
+export const ProfileCard = ({ profile }: { profile: Profile }) => {
   return (
     <Card isBlurred>
       <CardHeader className="flex-col items-center">
-        <h2 className={subtitle({ className: "text-center" })}>&ldquo;{profile.julukan}&rdquo;</h2>
+        <h2 className={subtitle({ className: "text-center" })}>
+          &ldquo;{profile.julukan}&rdquo;
+        </h2>
         <ShowAvatar size={150} url={profile.avatar_url} />
       </CardHeader>
       <CardBody>
@@ -50,7 +42,9 @@ export const ProfileCard = ({ profile }: { profile: Props }) => {
             <tr>
               <th>TTL</th>
               <td>:</td>
-              <td>{profile.tempat_lahir}, {profile.tanggal_lahir}</td>
+              <td>
+                {profile.tempat_lahir}, {profile.tanggal_lahir}
+              </td>
             </tr>
             <tr>
               <th>Jenis Kelamin</th>
@@ -71,8 +65,10 @@ export const ProfileCard = ({ profile }: { profile: Props }) => {
         </table>
       </CardBody>
       <CardFooter className="justify-center">
-        <Button color="warning">Edit</Button>
+        <Button as={Link} color="warning" href="/usr/account">
+          Edit
+        </Button>
       </CardFooter>
     </Card>
-  )
-}
+  );
+};

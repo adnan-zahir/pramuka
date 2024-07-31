@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 
 import { createClient } from "@/utils/supabase/server";
-import { DBOTP } from "@/types";
 import { siteConfig } from "@/config/site";
 
 export const dynamic = "force-dynamic";
@@ -15,10 +14,11 @@ export async function POST(request: Request) {
   const supabase = createClient();
 
   // get otp from db
-  const { data: otpData, error: otpError } = await supabase.from('otps')
-    .select('*')
-    .eq('otp', otp)
-    .eq('email', email)
+  const { data: otpData, error: otpError } = await supabase
+    .from("otps")
+    .select("*")
+    .eq("otp", otp)
+    .eq("email", email)
     .single();
 
   // refuse sign up if otp error or not found or otp expired
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
         // a 301 status is required to redirect from a POST to a GET route
         status: 301,
       },
-    )
+    );
   }
 
   if (otpData.expires_at < new Date()) {
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
         // a 301 status is required to redirect from a POST to a GET route
         status: 301,
       },
-    )
+    );
   }
 
   const { error } = await supabase.auth.signUp({

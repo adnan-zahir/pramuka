@@ -15,13 +15,13 @@ import { Input } from "@nextui-org/input";
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
+import { useEffect, useState } from "react";
 
 import { LogoutButton } from "./logoutbutton";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { InstagramIcon, SearchIcon, Logo } from "@/components/icons";
-import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 
 export const Navbar = () => {
@@ -31,9 +31,8 @@ export const Navbar = () => {
   useEffect(() => {
     const supabase = createClient();
 
-    supabase.auth.getUser()
-      .then(({ data: { user } }) => setUser(!!user))
-  }, [])
+    supabase.auth.getUser().then(({ data: { user } }) => setUser(!!user));
+  }, []);
 
   const searchInput = (
     <Input
@@ -57,7 +56,12 @@ export const Navbar = () => {
   );
 
   return (
-    <NextUINavbar isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} maxWidth="xl" position="sticky">
+    <NextUINavbar
+      isMenuOpen={isMenuOpen}
+      maxWidth="xl"
+      position="sticky"
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
@@ -91,8 +95,8 @@ export const Navbar = () => {
           <Link
             isExternal
             aria-label="Instagram"
-            href={siteConfig.links.instagram}
             className="hidden md:flex"
+            href={siteConfig.links.instagram}
           >
             <InstagramIcon className="text-default-500" />
           </Link>
@@ -111,7 +115,11 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <Link isExternal aria-label="Instagram" href={siteConfig.links.instagram}>
+        <Link
+          isExternal
+          aria-label="Instagram"
+          href={siteConfig.links.instagram}
+        >
           <InstagramIcon className="text-default-500" />
         </Link>
         <ThemeSwitch />
@@ -137,7 +145,12 @@ export const Navbar = () => {
             {user ? (
               <LogoutButton onClick={() => setIsMenuOpen(false)} />
             ) : (
-              <Link color="success" href="/login" size="lg" onClick={() => setIsMenuOpen(false)}>
+              <Link
+                color="success"
+                href="/login"
+                size="lg"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Login
               </Link>
             )}

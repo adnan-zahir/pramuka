@@ -78,10 +78,10 @@ export const siteConfig = {
     },
   ],
   redirects: {
-    afterLogin: "/usr"
+    afterLogin: "/usr",
   },
   protectedRoutes: {
     userOnly: "/usr",
-    adminOnly: "/usr/a"
-  }
+    adminOnly: "/usr/a",
+  },
 };

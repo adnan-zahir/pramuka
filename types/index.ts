@@ -40,3 +40,22 @@ export interface WhatsappFormData {
   name: string;
   text: string;
 }
+
+export interface Profile {
+  id?: string;
+  email: string;
+  nama_lengkap: string;
+  no_tamu: string;
+  nta: string;
+  tingkatan: string;
+  tempat_lahir: string;
+  tanggal_lahir: string;
+  jenis_kelamin: string;
+  golongan_darah: string;
+  no_hp: string;
+  julukan: string;
+  avatar_url: string;
+  angkatan: string;
+  ambalan: string;
+  social_media: string;
+}

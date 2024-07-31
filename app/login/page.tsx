@@ -16,7 +16,10 @@ export default async function Login() {
       <Section className="hidden md:block">
         <TitleContainer className="!text-left">
           <h1 className={title()}>Selamat Datang Kembali</h1>
-          <p className={subtitle()}>Masuk dengan akun anggota untuk menyunting konten dan artikel, juga menyesuaikan profilmu!</p>
+          <p className={subtitle()}>
+            Masuk dengan akun anggota untuk menyunting konten dan artikel, juga
+            menyesuaikan profilmu!
+          </p>
         </TitleContainer>
       </Section>
       <Section>
@@ -48,8 +51,8 @@ export default async function Login() {
               Sign In
             </Button>
             <div>
-              <span>Belum punya akun?{" "}</span>
-              <Link href="/signup" color="primary">
+              <span>Belum punya akun? </span>
+              <Link color="primary" href="/signup">
                 Daftar
               </Link>
             </div>

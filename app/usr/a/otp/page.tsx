@@ -1,9 +1,11 @@
+import { Input } from "@nextui-org/input";
+import { Button } from "@nextui-org/button";
+
+import Messages from "./messages";
+
 import { Section } from "@/components/section";
 import { TitleContainer } from "@/components/titlecountainer";
 import { title } from "@/components/primitives";
-import { Input } from "@nextui-org/input";
-import { Button } from "@nextui-org/button";
-import Messages from "./messages";
 
 export const dynamic = "force-dynamic";
 
@@ -33,5 +35,5 @@ export default function OTP() {
         </form>
       </div>
     </Section>
-  )
+  );
 }
