@@ -142,6 +142,9 @@ export const Navbar = () => {
             </NavbarMenuItem>
           ))}
           <NavbarMenuItem>
+            {/* {user && (
+              <User />
+            )} */}
             {user ? (
               <LogoutButton onClick={() => setIsMenuOpen(false)} />
             ) : (

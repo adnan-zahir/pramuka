@@ -45,9 +45,14 @@ export function SelectInput({
   );
 
   const setSearchParam = (value: string) => {
-    router.push(
+    window.history.pushState(
+      {},
+      "",
       `${pathname}?${createQueryString(propState.paramName, value || "0")}`,
     );
+    // router.push(
+    //   `${pathname}?${createQueryString(propState.paramName, value || "0")}`,
+    // );
   };
 
   const handleSelect: ChangeEventHandler<HTMLSelectElement> = (e) => {

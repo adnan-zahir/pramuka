@@ -3,12 +3,14 @@
 import { Input } from "@nextui-org/input";
 import { Button, ButtonGroup } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
+import { redirect } from "next/navigation";
 
 import { Profile } from "@/types";
 import { Section } from "@/components/section";
 import { Avatar } from "@/components/avatar";
 import { createClient } from "@/utils/supabase/server";
 import { SelectInput } from "@/components/selectinput";
+import { SubmitButton } from "@/components/submitbutton";
 
 export default async function AccountForm({
   profile,
@@ -35,9 +37,11 @@ export default async function AccountForm({
 
       formData.forEach((value, key) => {
         if (key.startsWith("$") === false) parsedData[key] = value;
-        if (searchParams.angkatan) parsedData.angkatan = searchParams.angkatan;
-        if (searchParams.ambalan) parsedData.ambalan = searchParams.ambalan;
-        if (searchParams.jenis_kelamin)
+        if (searchParams.angkatan && searchParams.angkatan !== "0")
+          parsedData.angkatan = searchParams.angkatan;
+        if (searchParams.ambalan && searchParams.ambalan !== "0")
+          parsedData.ambalan = searchParams.ambalan;
+        if (searchParams.jenis_kelamin && searchParams.jenis_kelamin !== "0")
           parsedData.jenis_kelamin = searchParams.jenis_kelamin;
       });
 
@@ -48,7 +52,13 @@ export default async function AccountForm({
 
       if (error) throw error;
     } catch (error) {
-      console.error((error as Error).message);
+      redirect(
+        `/usr/account?error=${encodeURI((error as Error).message || "Error! Please try again later.")}&c=${searchParams.c ? Number(searchParams.c) + 1 : 0}`,
+      );
+    } finally {
+      redirect(
+        `/usr/account?message=${encodeURI("Success editing profile!")}&c=${searchParams.c ? Number(searchParams.c) + 1 : 0}`,
+      );
     }
   };
 
@@ -167,11 +177,11 @@ export default async function AccountForm({
           <div className="flex gap-4 items-center justify-end col-span-2">
             <ButtonGroup>
               <Button as={Link} color="warning" href="/usr" variant="ghost">
-                Cancel
+                Back
               </Button>
-              <Button color="success" type="submit" variant="solid">
+              <SubmitButton color="success" variant="solid">
                 Update
-              </Button>
+              </SubmitButton>
             </ButtonGroup>
           </div>
         </form>
