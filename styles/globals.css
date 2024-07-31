@@ -10,27 +10,34 @@
   word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
 }
 
-/*body {*/
-/*    background: linear-gradient(271deg, var(--nextui-background), #0c1b2f, var(--nextui-background), #000e1c, var(--nextui-background));*/
-/*    background-size: 1200% 1200%;*/
-/**/
-/*    -webkit-animation: AnimationName 100s ease infinite;*/
-/*    -moz-animation: AnimationName 100s ease infinite;*/
-/*    animation: AnimationName 100s ease infinite;*/
-/*}*/
-/**/
-/*@-webkit-keyframes AnimationName {*/
-/*    0%{background-position:0% 50%}*/
-/*    50%{background-position:100% 50%}*/
-/*    100%{background-position:0% 50%}*/
-/*}*/
-/*@-moz-keyframes AnimationName {*/
-/*    0%{background-position:0% 50%}*/
-/*    50%{background-position:100% 50%}*/
-/*    100%{background-position:0% 50%}*/
-/*}*/
-/*@keyframes AnimationName {*/
-/*    0%{background-position:0% 50%}*/
-/*    50%{background-position:100% 50%}*/
-/*    100%{background-position:0% 50%}*/
-/*}*/
+html.dark {
+    background: linear-gradient(271deg, #000000, #0c1b2f, #000000, #000e1c);
+    background-size: 1200% 1200%;
+    -webkit-animation: AnimationName 100s ease infinite;
+    -moz-animation: AnimationName 100s ease infinite;
+    animation: AnimationName 100s ease infinite;
+}
+
+html.light {
+    background: linear-gradient(271deg, #ffffff, #b4cdec, #ffffff, #bccce0);
+    background-size: 1200% 1200%;
+    -webkit-animation: AnimationName 100s ease infinite;
+    -moz-animation: AnimationName 100s ease infinite;
+    animation: AnimationName 100s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
