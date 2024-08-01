@@ -9,6 +9,7 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
+import { User } from "@nextui-org/user";
 import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
@@ -23,15 +24,43 @@ import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { InstagramIcon, SearchIcon, Logo } from "@/components/icons";
 import { createClient } from "@/utils/supabase/client";
+import { Profile } from "@/types";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState(false);
+  const [profile, setProfile] = useState<Profile | null>();
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const supabase = createClient();
 
-    supabase.auth.getUser().then(({ data: { user } }) => setUser(!!user));
+    // get user auth
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUser(!!user)
+
+      // get profile from user
+      if (user) {
+        supabase.from("profiles")
+          .select("nama_lengkap, julukan, avatar_url")
+          .eq("id", user.id)
+          .single()
+          .then(({ data }) => {
+            const profile = data as Profile;
+            setProfile(profile);
+            console.log(profile);
+
+            // get avatar from profile
+            supabase.storage.from("avatars")
+              .download(profile.avatar_url)
+              .then(({ data }) => {
+                if (data) {
+                  setAvatarUrl(URL.createObjectURL(data));
+                }
+              })
+          });
+      }
+    });
   }, []);
 
   const searchInput = (
@@ -62,7 +91,7 @@ export const Navbar = () => {
       position="sticky"
       onMenuOpenChange={setIsMenuOpen}
     >
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+      <NavbarContent className="basis-1/5 sm:basis-full overflow-x-auto" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <Logo />
@@ -88,21 +117,34 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
+        className="hidden sm:flex !grow-0"
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
           <Link
             isExternal
             aria-label="Instagram"
-            className="hidden md:flex"
+            className="hidden lg:flex"
             href={siteConfig.links.instagram}
           >
             <InstagramIcon className="text-default-500" />
           </Link>
           <ThemeSwitch />
         </NavbarItem>
-        <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
+        <NavbarItem className="hidden sm:flex md:hidden">
+          {user && (
+            <User as={Link} href="/usr" name="" avatarProps={{
+              src: avatarUrl || ""
+            }} />
+          )}
+        </NavbarItem>
+        <NavbarItem className="hidden md:flex">
+          {user && (
+            <User as={Link} href="/usr" name={profile?.nama_lengkap} description={profile?.julukan} avatarProps={{
+              src: avatarUrl || ""
+            }} />
+          )}
+        </NavbarItem>
         <NavbarItem>
           {user ? (
             <LogoutButton />
@@ -127,7 +169,11 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarMenu>
-        {searchInput}
+        {user && (
+          <User as={Link} href="/usr" name={profile?.nama_lengkap} description={profile?.julukan} avatarProps={{
+            src: avatarUrl || ""
+          }} />
+        )}
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
@@ -142,9 +188,6 @@ export const Navbar = () => {
             </NavbarMenuItem>
           ))}
           <NavbarMenuItem>
-            {/* {user && (
-              <User />
-            )} */}
             {user ? (
               <LogoutButton onClick={() => setIsMenuOpen(false)} />
             ) : (

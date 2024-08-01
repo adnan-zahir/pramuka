@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Pramuka | Graha Pancaka",
+  name: "Graha Pancaka",
   description:
     "Lihat kumpulan aktifitas dan galeri kami di gerakan pramuka graha pancaka. Bersatu, Berjuang, Menang!",
   navItems: [

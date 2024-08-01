@@ -7,6 +7,11 @@ import { createClient } from "@/utils/supabase/server";
 import { DBKegiatan } from "@/types";
 import { Section } from "@/components/section";
 import { TitleContainer } from "@/components/titlecountainer";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Kegiatan"
+}
 
 export default async function KegiatanPage() {
   const supabase = createClient();

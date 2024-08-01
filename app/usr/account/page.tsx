@@ -9,12 +9,13 @@ import { TitleContainer } from "@/components/titlecountainer";
 import { Profile } from "@/types";
 import { createClient } from "@/utils/supabase/server";
 import { title } from "@/components/primitives";
+import { Metadata } from "next";
 
-export default async function Account({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+export const metadata: Metadata = {
+  title: "Profil Akun"
+}
+
+export default async function Account() {
   const supabase = createClient();
 
   const {
@@ -47,7 +48,7 @@ export default async function Account({
         </Section>
         <Card isBlurred className="p-4">
           <CardBody>
-            <AccountForm profile={profile} searchParams={searchParams} />
+            <AccountForm profile={profile} />
           </CardBody>
         </Card>
       </Section>

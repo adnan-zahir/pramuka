@@ -27,6 +27,7 @@
 		"@nextui-org/system": "2.2.1",
 		"@nextui-org/tabs": "^2.0.35",
 		"@nextui-org/theme": "2.2.5",
+		"@nextui-org/user": "^2.0.33",
 		"@react-aria/ssr": "3.9.4",
 		"@react-aria/visually-hidden": "3.8.12",
 		"@supabase/auth-helpers-nextjs": "^0.10.0",
@@ -39,6 +40,7 @@
 		"next": "14.2.4",
 		"next-app-template": "link:",
 		"next-themes": "^0.2.1",
+		"nextjs-toploader": "^1.6.12",
 		"react": "18.3.1",
 		"react-dom": "18.3.1"
 	},

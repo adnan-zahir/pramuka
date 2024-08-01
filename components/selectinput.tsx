@@ -1,8 +1,16 @@
 "use client";
 
 import { Select, SelectItem } from "@nextui-org/select";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { ChangeEventHandler, useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
+interface SelectInputProps {
+  array: { [key: string]: any }[];
+  keyName: string;
+  value: string;
+  defaultSelectedKeys: string[];
+  label: string;
+  paramName: string;
+}
 
 export function SelectInput({
   array,
@@ -11,78 +19,31 @@ export function SelectInput({
   defaultSelectedKeys,
   label,
   paramName,
-}: {
-  array: any[];
-  keyName: string;
-  value: string;
-  defaultSelectedKeys: string[];
-  label: string;
-  paramName: string;
-}) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
+}: SelectInputProps) {
   const [selected, setSelected] = useState<string>(defaultSelectedKeys[0]);
-  const [propState, setPropState] = useState({
-    array: array,
-    key: keyName,
-    value: value,
-    label: label,
-    paramName: paramName,
-    defaultSelectedKeys: defaultSelectedKeys,
-  });
 
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams],
-  );
-
-  const setSearchParam = (value: string) => {
-    window.history.pushState(
-      {},
-      "",
-      `${pathname}?${createQueryString(propState.paramName, value || "0")}`,
-    );
-    // router.push(
-    //   `${pathname}?${createQueryString(propState.paramName, value || "0")}`,
-    // );
-  };
-
-  const handleSelect: ChangeEventHandler<HTMLSelectElement> = (e) => {
-    setSelected(e.target.value);
+  const handleSelect = (value: string | Set<string>) => {
+    const newValue = typeof value === "string" ? value : Array.from(value)[0];
+    setSelected(newValue);
   };
 
   useEffect(() => {
-    setPropState({
-      array: array,
-      key: keyName,
-      value: value,
-      label: label,
-      paramName: paramName,
-      defaultSelectedKeys: defaultSelectedKeys,
-    });
-
     setSelected(defaultSelectedKeys[0]);
   }, []);
 
-  useEffect(() => {
-    if (propState.paramName) {
-      setSearchParam(selected);
-    }
-  }, [selected]);
-
   return (
-    <Select label={label} selectedKeys={[selected]} onChange={handleSelect}>
-      {array.map((i: any) => (
-        <SelectItem key={i[propState.key]}>{i[propState.value]}</SelectItem>
-      ))}
-    </Select>
+    <>
+      <Select label={label} selectedKeys={[selected]} onSelectionChange={handleSelect}>
+        {array.map((item) => (
+          <SelectItem key={item[keyName]}>{item[value]}</SelectItem>
+        ))}
+      </Select>
+      <select name={paramName} className="hidden" value={selected} onChange={() => ""} aria-readonly="true">
+        {array.map((item) => (
+          <option key={item[keyName]} value={item[keyName]}>{item[value]}</option>
+        ))}
+      </select>
+    </>
   );
 }
+

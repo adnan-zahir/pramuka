@@ -8,6 +8,23 @@ import { DBKegiatan, DBParagraph, paragraphType } from "@/types";
 import { createClient } from "@/utils/supabase/server";
 import { Section } from "@/components/section";
 import { TitleContainer } from "@/components/titlecountainer";
+import { Metadata } from "next";
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const { id } = params;
+  const supabase = createClient();
+  const { data } = await supabase
+    .from("kegiatans")
+    .select(`name`)
+    .eq("id", id)
+    .single();
+
+  const kegiatan = data as unknown as DBKegiatan;
+
+  return {
+    title: kegiatan.name
+  }
+}
 
 export default async function KegiatanDetail({
   params,
@@ -18,10 +35,10 @@ export default async function KegiatanDetail({
   const { data } = await supabase
     .from("kegiatans")
     .select(`*, paragraph:paragraph (*)`)
-    .eq("id", params.id);
+    .eq("id", params.id)
+    .single();
 
-  const kegiatans = data as unknown as DBKegiatan[];
-  const kegiatan = kegiatans[0];
+  const kegiatan = data as unknown as DBKegiatan;
 
   return (
     <Section>

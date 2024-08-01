@@ -5,6 +5,11 @@ import { TitleContainer } from "@/components/titlecountainer";
 import { createClient } from "@/utils/supabase/server";
 import { title } from "@/components/primitives";
 import { ProfileCard } from "@/components/profilecard";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Anggota"
+}
 
 export default async function UserPage() {
   const supabase = createClient();

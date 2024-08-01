@@ -18,6 +18,14 @@ export default function Messages() {
   useEffect(() => {
     if (message) setShowMessage(true);
     if (error) setShowError(true);
+    const i = setTimeout(() => {
+      setShowMessage(false);
+      setShowError(false);
+    }, 5 * 1000)
+
+    return () => {
+      clearTimeout(i);
+    }
   }, [error, message, c]);
 
   return (
