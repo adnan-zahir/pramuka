@@ -1,53 +1,94 @@
-# Next.js & NextUI Template
+# Pramuka
 
-This is a template for creating applications using Next.js 14 (app directory) and NextUI (v2).
+![Pramuka Logo](public/logo.png)
 
-[Try it on CodeSandbox](https://githubbox.com/nextui-org/next-app-template)
+## Table of Contents
 
-## Technologies Used
+- [About the Project](#about-the-project)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [NextUI v2](https://nextui.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+## About the Project
 
-## How to Use
+Pramuka is a project designed to promote a scout group and share it's activities and gallery, while also act as a archiving tool with the user management system. It aims to expose an organization to the public eye more and make member data archiving easier and more manageable.
 
-### Use the template with create-next-app
+## Features
 
-To create a new project based on this template using `create-next-app`, run the following command:
+- User and Admin Panel
+- Blog and Gallery Editor
+- Contact form with Whatsapp and GMail
 
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-app-template
-```
+## Getting Started
 
-### Install dependencies
+To get a local copy up and running, follow these simple steps.
 
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+### Prerequisites
 
-```bash
-npm install
-```
+Ensure you have the following installed:
 
-### Run the development server
+- Node.js
+- npm
 
+### Installation
+
+1. Clone the repository:
+	```bash
+	git clone https://github.com/adnan-zahir/pramuka.git
+	```
+2. Navigate to the project repository
+	```bash
+	cd pramuka
+	```
+3. Install dependencies
+	```bash
+	npm install
+	```
+## Usage
+
+To start the development server, run:
 ```bash
 npm run dev
 ```
-
-### Setup pnpm (optional)
-
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
-
+To build the project, run:
 ```bash
-public-hoist-pattern[]=*@nextui-org/*
+npm run build
+```
+For running tests, run:
+```bash
+npm test
 ```
 
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1.  Fork the Project
+2.  Create your Feature Branch
+	```bash
+	git checkout -b feature/AmazingFeature
+	```
+3.  Commit your Changes
+	```bash
+	git commit -m 'Add some AmazingFeature'
+	```
+4.  Push to the Branch
+	```bash
+	git push origin feature/AmazingFeature
+	```
+5.  Open a Pull Request
 
 ## License
 
-Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact
+
+Adnan Zahir - adnanzaidanz@gmail.com
+
+Project Link: [https://github.com/adnan-zahir/pramuka](https://github.com/adnan-zahir/pramuka)
