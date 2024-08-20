@@ -1,4 +1,5 @@
 import { Card, CardBody } from "@nextui-org/card";
+import { Metadata } from "next";
 
 import AccountForm from "./account-form";
 import Messages from "./messages";
@@ -9,13 +10,12 @@ import { TitleContainer } from "@/components/titlecountainer";
 import { Profile } from "@/types";
 import { createClient } from "@/utils/supabase/server";
 import { title } from "@/components/primitives";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Profil Akun"
-}
+  title: "Profil Akun",
+};
 
-export default async function Account() {
+export default async function ProfilePage() {
   const supabase = createClient();
 
   const {

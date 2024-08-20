@@ -21,11 +21,11 @@ export default function Messages() {
     const i = setTimeout(() => {
       setShowMessage(false);
       setShowError(false);
-    }, 5 * 1000)
+    }, 5 * 1000);
 
     return () => {
       clearTimeout(i);
-    }
+    };
   }, [error, message, c]);
 
   return (

@@ -1,11 +1,12 @@
+import { Metadata } from "next";
+
 import { title } from "@/components/primitives";
 import { Section } from "@/components/section";
 import { TitleContainer } from "@/components/titlecountainer";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Tentang"
-}
+  title: "Tentang",
+};
 
 export default function AboutPage() {
   return (

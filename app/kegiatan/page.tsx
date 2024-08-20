@@ -1,17 +1,17 @@
 import { Card, CardHeader, CardFooter, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import { Link } from "@nextui-org/link";
+import { Metadata } from "next";
 
 import { title, subtitle } from "@/components/primitives";
 import { createClient } from "@/utils/supabase/server";
 import { DBKegiatan } from "@/types";
 import { Section } from "@/components/section";
 import { TitleContainer } from "@/components/titlecountainer";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Kegiatan"
-}
+  title: "Kegiatan",
+};
 
 export default async function KegiatanPage() {
   const supabase = createClient();

@@ -37,27 +37,30 @@ export const Navbar = () => {
 
     // get user auth
     supabase.auth.getUser().then(({ data: { user } }) => {
-      setUser(!!user)
+      setUser(!!user);
 
       // get profile from user
       if (user) {
-        supabase.from("profiles")
+        supabase
+          .from("profiles")
           .select("nama_lengkap, julukan, avatar_url")
           .eq("id", user.id)
           .single()
           .then(({ data }) => {
             const profile = data as Profile;
+
             setProfile(profile);
             console.log(profile);
 
             // get avatar from profile
-            supabase.storage.from("avatars")
+            supabase.storage
+              .from("avatars")
               .download(profile.avatar_url)
               .then(({ data }) => {
                 if (data) {
                   setAvatarUrl(URL.createObjectURL(data));
                 }
-              })
+              });
           });
       }
     });
@@ -91,7 +94,10 @@ export const Navbar = () => {
       position="sticky"
       onMenuOpenChange={setIsMenuOpen}
     >
-      <NavbarContent className="basis-1/5 sm:basis-full overflow-x-auto" justify="start">
+      <NavbarContent
+        className="basis-1/5 sm:basis-full overflow-x-auto"
+        justify="start"
+      >
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <Logo />
@@ -116,10 +122,7 @@ export const Navbar = () => {
         </ul>
       </NavbarContent>
 
-      <NavbarContent
-        className="hidden sm:flex !grow-0"
-        justify="end"
-      >
+      <NavbarContent className="hidden sm:flex !grow-0" justify="end">
         <NavbarItem className="hidden sm:flex gap-2">
           <Link
             isExternal
@@ -133,16 +136,28 @@ export const Navbar = () => {
         </NavbarItem>
         <NavbarItem className="hidden sm:flex md:hidden">
           {user && (
-            <User as={Link} href="/usr" name="" avatarProps={{
-              src: avatarUrl || ""
-            }} />
+            <User
+              as={Link}
+              avatarProps={{
+                src: avatarUrl || "",
+              }}
+              href="/usr"
+              name=""
+            />
           )}
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
           {user && (
-            <User as={Link} href="/usr" name={profile?.nama_lengkap} description={profile?.julukan} avatarProps={{
-              src: avatarUrl || ""
-            }} />
+            <User
+              as={Link}
+              avatarProps={{
+                src: avatarUrl || "",
+              }}
+              className="bg-foreground p-2"
+              description={profile?.julukan}
+              href="/usr"
+              name={profile?.nama_lengkap}
+            />
           )}
         </NavbarItem>
         <NavbarItem>
@@ -170,9 +185,15 @@ export const Navbar = () => {
 
       <NavbarMenu>
         {user && (
-          <User as={Link} href="/usr" name={profile?.nama_lengkap} description={profile?.julukan} avatarProps={{
-            src: avatarUrl || ""
-          }} />
+          <User
+            as={Link}
+            avatarProps={{
+              src: avatarUrl || "",
+            }}
+            description={profile?.julukan}
+            href="/usr"
+            name={profile?.nama_lengkap}
+          />
         )}
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (

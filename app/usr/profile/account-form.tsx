@@ -30,17 +30,46 @@ export default async function AccountForm({ profile }: AccountFormProps) {
           uid={profile.id ?? null}
           url={profile.avatar_url || ""}
         />
-        <form action={`/api/update-profile`} method="post" className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form
+          action={`/api/update-profile`}
+          className="grid grid-cols-1 md:grid-cols-2 gap-4"
+          method="post"
+        >
           <Divider className="md:col-span-2" />
-          <Input isReadOnly className="hidden" value={profile.id} label="ID" name="id" type="text" />
-          <Input isDisabled label="Julukan" type="text" value={profile.julukan || ""} />
-          <Input isDisabled label="Nomor Tamu" type="text" value={profile.no_tamu || ""} />
+          <Input
+            isReadOnly
+            className="hidden"
+            label="ID"
+            name="id"
+            type="text"
+            value={profile.id}
+          />
+          <Input
+            isDisabled
+            label="Julukan"
+            type="text"
+            value={profile.julukan || ""}
+          />
+          <Input
+            isDisabled
+            label="Nomor Tamu"
+            type="text"
+            value={profile.no_tamu || ""}
+          />
           <Input isDisabled label="NTA" type="text" value={profile.nta || ""} />
-          <Input isDisabled defaultValue={profile.tingkatan || ""} label="Tingkatan" name="tingkatan" type="text" />
+          <Input
+            isDisabled
+            defaultValue={profile.tingkatan || ""}
+            label="Tingkatan"
+            name="tingkatan"
+            type="text"
+          />
           {angkatans && (
             <SelectInput
               array={angkatans}
-              defaultSelectedKeys={[profile.angkatan ? profile.angkatan.toString() : "0"]}
+              defaultSelectedKeys={[
+                profile.angkatan ? profile.angkatan.toString() : "0",
+              ]}
               keyName="id"
               label="Pilih Angkatan"
               paramName="angkatan"
@@ -50,7 +79,9 @@ export default async function AccountForm({ profile }: AccountFormProps) {
           {ambalans && (
             <SelectInput
               array={ambalans}
-              defaultSelectedKeys={[profile.ambalan ? profile.ambalan.toString() : "0"]}
+              defaultSelectedKeys={[
+                profile.ambalan ? profile.ambalan.toString() : "0",
+              ]}
               keyName="id"
               label="Pilih Ambalan"
               paramName="ambalan"
@@ -59,9 +90,24 @@ export default async function AccountForm({ profile }: AccountFormProps) {
           )}
           <Divider className="md:col-span-2" />
           <Input isDisabled label="Email" type="email" value={profile.email} />
-          <Input defaultValue={profile.nama_lengkap || ""} label="Nama Lengkap" name="nama_lengkap" type="text" />
-          <Input defaultValue={profile.tempat_lahir || ""} label="Tempat Lahir" name="tempat_lahir" type="text" />
-          <Input defaultValue={profile.tanggal_lahir || "2000-01-01"} label="Tanggal Lahir" name="tanggal_lahir" type="date" />
+          <Input
+            defaultValue={profile.nama_lengkap || ""}
+            label="Nama Lengkap"
+            name="nama_lengkap"
+            type="text"
+          />
+          <Input
+            defaultValue={profile.tempat_lahir || ""}
+            label="Tempat Lahir"
+            name="tempat_lahir"
+            type="text"
+          />
+          <Input
+            defaultValue={profile.tanggal_lahir || "2000-01-01"}
+            label="Tanggal Lahir"
+            name="tanggal_lahir"
+            type="date"
+          />
           <SelectInput
             array={[
               { id: "L", value: "L" },
@@ -73,9 +119,24 @@ export default async function AccountForm({ profile }: AccountFormProps) {
             paramName="jenis_kelamin"
             value="value"
           />
-          <Input defaultValue={profile.golongan_darah || ""} label="Golongan Darah" name="golongan_darah" type="text" />
-          <Input defaultValue={profile.no_hp || ""} label="No HP" name="no_hp" type="text" />
-          <Input defaultValue={profile.social_media || ""} label="Sosial Media" name="social_media" type="text" />
+          <Input
+            defaultValue={profile.golongan_darah || ""}
+            label="Golongan Darah"
+            name="golongan_darah"
+            type="text"
+          />
+          <Input
+            defaultValue={profile.no_hp || ""}
+            label="No HP"
+            name="no_hp"
+            type="text"
+          />
+          <Input
+            defaultValue={profile.social_media || ""}
+            label="Sosial Media"
+            name="social_media"
+            type="text"
+          />
           <div className="flex gap-4 items-center justify-end md:col-span-2">
             <ButtonGroup>
               <Button as={Link} color="warning" href="/usr" variant="ghost">
@@ -91,4 +152,3 @@ export default async function AccountForm({ profile }: AccountFormProps) {
     </Section>
   );
 }
-

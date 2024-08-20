@@ -1,19 +1,19 @@
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
+import { Metadata } from "next";
 
 import Messages from "./messages";
 
 import { TitleContainer } from "@/components/titlecountainer";
 import { Section } from "@/components/section";
 import { subtitle, title } from "@/components/primitives";
-import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Login"
-}
+  title: "Login",
+};
 
 export default async function Login() {
   return (

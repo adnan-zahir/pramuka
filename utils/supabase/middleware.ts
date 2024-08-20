@@ -20,9 +20,7 @@ export async function updateSession(request: NextRequest) {
           cookiesToSet.forEach(({ name, value }) =>
             request.cookies.set(name, value),
           );
-          supabaseResponse = NextResponse.next({
-            request,
-          });
+          supabaseResponse = NextResponse.next({ request });
           cookiesToSet.forEach(({ name, value, options }) =>
             supabaseResponse.cookies.set(name, value, options),
           );
@@ -38,11 +36,29 @@ export async function updateSession(request: NextRequest) {
     error,
   } = await supabase.auth.getUser();
 
+  console.log(user?.id);
+  const { data, error: role_error } = await supabase
+    .from("profiles")
+    .select("app_role")
+    .eq("id", user?.id)
+    .single();
+  const { app_role } = data ? data.app_role : "anon";
+
+  console.log(data);
+
   if (
     (error || !user) &&
     request.nextUrl.pathname.startsWith(siteConfig.protectedRoutes.userOnly)
-  )
+  ) {
     return NextResponse.redirect(new URL("/login", request.url));
+  }
+
+  if (
+    (role_error || app_role !== "admin") &&
+    request.nextUrl.pathname.startsWith(siteConfig.protectedRoutes.adminOnly)
+  ) {
+    return NextResponse.redirect(new URL("/usr", request.url));
+  }
 
   return supabaseResponse;
 }

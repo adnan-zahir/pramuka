@@ -24,6 +24,7 @@ export function SelectInput({
 
   const handleSelect = (value: string | Set<string>) => {
     const newValue = typeof value === "string" ? value : Array.from(value)[0];
+
     setSelected(newValue);
   };
 
@@ -33,17 +34,28 @@ export function SelectInput({
 
   return (
     <>
-      <Select label={label} selectedKeys={[selected]} onSelectionChange={handleSelect}>
+      <Select
+        label={label}
+        selectedKeys={[selected]}
+        onSelectionChange={handleSelect}
+      >
         {array.map((item) => (
           <SelectItem key={item[keyName]}>{item[value]}</SelectItem>
         ))}
       </Select>
-      <select name={paramName} className="hidden" value={selected} onChange={() => ""} aria-readonly="true">
+      <select
+        aria-readonly="true"
+        className="hidden"
+        name={paramName}
+        value={selected}
+        onChange={() => ""}
+      >
         {array.map((item) => (
-          <option key={item[keyName]} value={item[keyName]}>{item[value]}</option>
+          <option key={item[keyName]} value={item[keyName]}>
+            {item[value]}
+          </option>
         ))}
       </select>
     </>
   );
 }
-

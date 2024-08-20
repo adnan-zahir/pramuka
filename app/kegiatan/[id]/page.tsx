@@ -2,15 +2,19 @@ import { Image } from "@nextui-org/image";
 // eslint-disable-next-line unused-imports/no-unused-imports
 import { Snippet } from "@nextui-org/snippet";
 import { Divider } from "@nextui-org/divider";
+import { Metadata } from "next";
 
 import { title } from "@/components/primitives";
 import { DBKegiatan, DBParagraph, paragraphType } from "@/types";
 import { createClient } from "@/utils/supabase/server";
 import { Section } from "@/components/section";
 import { TitleContainer } from "@/components/titlecountainer";
-import { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
   const { id } = params;
   const supabase = createClient();
   const { data } = await supabase
@@ -22,8 +26,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   const kegiatan = data as unknown as DBKegiatan;
 
   return {
-    title: kegiatan.name
-  }
+    title: kegiatan.name,
+  };
 }
 
 export default async function KegiatanDetail({

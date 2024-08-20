@@ -8,7 +8,10 @@ export async function middleware(request: NextRequest) {
 
   // add pathname and searchParams to header
   response.headers.set("x-current-pathname", request.nextUrl.pathname);
-  response.headers.set("x-current-searchparams", request.nextUrl.searchParams.toString());
+  response.headers.set(
+    "x-current-searchparams",
+    request.nextUrl.searchParams.toString(),
+  );
 
   return response;
 }

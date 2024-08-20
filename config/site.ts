@@ -82,6 +82,6 @@ export const siteConfig = {
   },
   protectedRoutes: {
     userOnly: "/usr",
-    adminOnly: "/usr/a",
+    adminOnly: "/usr/adm",
   },
 };

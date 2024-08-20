@@ -13,11 +13,7 @@ export function SubmitButton({
   variant: any;
 }) {
   return (
-    <Button
-      color={color || "success"}
-      type="submit"
-      variant={variant}
-    >
+    <Button color={color || "success"} type="submit" variant={variant}>
       {children || "Submit"}
     </Button>
   );

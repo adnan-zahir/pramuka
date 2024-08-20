@@ -6,7 +6,7 @@ import { Section } from "@/components/section";
 import { BlogIcon, GalleryIcon, ProfileIcon } from "@/components/icons";
 
 const MENU_LINKS = [
-  { name: "Profil", url: "/account", icon: <ProfileIcon size={64} /> },
+  { name: "Profil", url: "/profile", icon: <ProfileIcon size={64} /> },
   { name: "Kegiatan", url: "/kegiatan", icon: <BlogIcon size={64} /> },
   { name: "Galeri", url: "/galeri", icon: <GalleryIcon size={64} /> },
 ];

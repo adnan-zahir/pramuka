@@ -1,5 +1,6 @@
-import { createClient } from "@/utils/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
+
+import { createClient } from "@/utils/supabase/server";
 
 export const dynamic = "force-dynamic";
 
@@ -11,7 +12,7 @@ export async function POST(request: NextRequest) {
   const supabase = createClient();
 
   console.log("Search params received by route");
-  console.log(searchParams.toString())
+  console.log(searchParams.toString());
 
   // parse data from formData and searchParams
   const parsedData: { [key: string]: string } = {};
@@ -21,14 +22,14 @@ export async function POST(request: NextRequest) {
   });
   if (uuid) {
     parsedData.id = uuid as string;
-  };
+  }
 
-  formData.forEach((value, key) => console.log(key, value))
+  formData.forEach((value, key) => console.log(key, value));
   //
   // req update to supabase
   const queryString = new URLSearchParams();
-  try {
 
+  try {
     const { error } = await supabase
       .from("profiles")
       .update(parsedData)
@@ -36,13 +37,15 @@ export async function POST(request: NextRequest) {
 
     if (error) throw error;
     queryString.append("message", "Success editing profile!");
-  }
-  catch (error) {
+  } catch (error) {
     console.error(error);
-    queryString.append("error", (error as Error).message || "Error! Please try again later.");
+    queryString.append(
+      "error",
+      (error as Error).message || "Error! Please try again later.",
+    );
   }
 
   return NextResponse.redirect(
-    `${requestUrl.origin}/usr/account?${queryString.toString()}`
-  )
+    `${requestUrl.origin}/usr/account?${queryString.toString()}`,
+  );
 }

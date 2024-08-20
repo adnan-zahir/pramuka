@@ -1,12 +1,13 @@
+import { Metadata } from "next";
+
 import { FormTabs } from "@/components/kontak/formtabs";
 import { subtitle, title } from "@/components/primitives";
 import { Section } from "@/components/section";
 import { TitleContainer } from "@/components/titlecountainer";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Kontak"
-}
+  title: "Kontak",
+};
 
 export default function KontakPage() {
   return (
