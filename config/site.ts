@@ -83,5 +83,6 @@ export const siteConfig = {
   protectedRoutes: {
     userOnly: "/usr",
     adminOnly: "/usr/adm",
+    login: "/login",
   },
 };

@@ -36,38 +36,55 @@ export async function updateSession(request: NextRequest) {
     error,
   } = await supabase.auth.getUser();
 
-  try {
-    const { data, error: role_error } = await supabase
-      .from("profiles")
-      // .select("app_role")
-      .select("app_role, roles ( level )")
-      .eq("id", user?.id)
-      .single();
+  /** --------------------------------
+    * ROUTE PROTECTING
+    * --------------------------------
+    * */
 
-    // Using role name eg. admin | dewan | anggota
-    const app_role = data ? data.app_role : "anon";
-    // Using role level (1 = lowest previlege)
-    // const role_level = data ? data.roles.level : 0;
-
-    // Handle Error
-    if (role_error) throw role_error;
-
-    if (
-      (role_error || app_role !== "admin") &&
-      request.nextUrl.pathname.startsWith(siteConfig.protectedRoutes.adminOnly)
-    ) {
-      return NextResponse.redirect(new URL("/usr", request.url));
-    }
-  } catch (err) {
-    console.log("ERROR:");
-    console.error(err);
-  }
-
+  // ROUTE /usr for AUTHENTICATED user only
   if (
     (error || !user) &&
     request.nextUrl.pathname.startsWith(siteConfig.protectedRoutes.userOnly)
   ) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    return NextResponse.redirect(new URL(siteConfig.protectedRoutes.login, request.url));
+  }
+
+  // ROUTE /login cannot be accessed by already logged-in users
+  if (
+    (user) &&
+    request.nextUrl.pathname.startsWith(siteConfig.protectedRoutes.login)
+  ) {
+    return NextResponse.redirect(new URL(siteConfig.protectedRoutes.userOnly, request.url));
+  }
+
+  // ROUTE /usr/adm for role ADMIN only
+  if (
+    (user) &&
+    request.nextUrl.pathname.startsWith(siteConfig.protectedRoutes.adminOnly)
+  ) {
+    try {
+      const { data, error: role_error } = await supabase
+        .from("profiles")
+        // .select("app_role")
+        .select("app_role, roles ( level )")
+        .eq("id", user?.id)
+        .single();
+
+      // Using role name eg. admin | dewan | anggota
+      const app_role = data ? data.app_role : "anon";
+      // Using role level (1 = lowest previlege)
+      // const role_level = data ? data.roles.level : 0;
+
+      // Handle Error
+      if (role_error) throw role_error;
+
+      if (role_error || app_role !== "admin") {
+        return NextResponse.redirect(new URL(siteConfig.protectedRoutes.userOnly, request.url));
+      }
+    } catch (err) {
+      console.log("ERROR:");
+      console.error(err);
+    }
   }
 
   return supabaseResponse;
