@@ -36,28 +36,38 @@ export async function updateSession(request: NextRequest) {
     error,
   } = await supabase.auth.getUser();
 
-  console.log(user?.id);
-  const { data, error: role_error } = await supabase
-    .from("profiles")
-    .select("app_role")
-    .eq("id", user?.id)
-    .single();
-  const { app_role } = data ? data.app_role : "anon";
+  try {
+    const { data, error: role_error } = await supabase
+      .from("profiles")
+      // .select("app_role")
+      .select("app_role, roles ( level )")
+      .eq("id", user?.id)
+      .single();
 
-  console.log(data);
+    // Using role name eg. admin | dewan | anggota
+    const app_role = data ? data.app_role : "anon";
+    // Using role level (1 = lowest previlege)
+    // const role_level = data ? data.roles.level : 0;
+
+    // Handle Error
+    if (role_error) throw role_error;
+
+    if (
+      (role_error || app_role !== "admin") &&
+      request.nextUrl.pathname.startsWith(siteConfig.protectedRoutes.adminOnly)
+    ) {
+      return NextResponse.redirect(new URL("/usr", request.url));
+    }
+  } catch (err) {
+    console.log("ERROR:");
+    console.error(err);
+  }
 
   if (
     (error || !user) &&
     request.nextUrl.pathname.startsWith(siteConfig.protectedRoutes.userOnly)
   ) {
     return NextResponse.redirect(new URL("/login", request.url));
-  }
-
-  if (
-    (role_error || app_role !== "admin") &&
-    request.nextUrl.pathname.startsWith(siteConfig.protectedRoutes.adminOnly)
-  ) {
-    return NextResponse.redirect(new URL("/usr", request.url));
   }
 
   return supabaseResponse;
