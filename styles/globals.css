@@ -26,6 +26,18 @@ html.light {
     animation: AnimationName 100s ease infinite;
 }
 
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -100;
+  background: url(/explorer_orange_sunset.jpg);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  filter: blur(2px);
+}
+
 @-webkit-keyframes AnimationName {
     0%{background-position:0% 50%}
     50%{background-position:100% 50%}

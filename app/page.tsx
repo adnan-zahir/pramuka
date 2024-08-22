@@ -79,7 +79,7 @@ export default async function Home() {
       {/* KEGIATAN::START */}
       <div className="relative">
         <div
-          className="absolute inset-0 mt-4 text-slate-900 shadow-inner shadow-black bg-fixed bg-center bg-no-repeat bg-cover -mx-6 flex justify-center -z-50"
+          className="absolute inset-0 mt-4 text-slate-900 shadow-inner bg-fixed bg-center bg-no-repeat bg-cover -mx-6 flex justify-center -z-50 xl:rounded"
           style={{ backgroundImage: "url(/explorer_orange_sunset.jpg)" }}
         />
         <Section>

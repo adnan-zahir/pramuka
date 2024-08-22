@@ -8,9 +8,11 @@ import { createClient } from "@/utils/supabase/client";
 export function ShowAvatar({
   url,
   size,
+  className,
 }: {
   url: string | null;
   size: number;
+  className?: string;
 }) {
   const supabase = createClient();
   const [avatarUrl, setAvatarUrl] = useState<string | null>(url);
@@ -38,11 +40,11 @@ export function ShowAvatar({
   }, [url, supabase]);
 
   return (
-    <div>
+    <>
       {avatarUrl ? (
         <Image
           alt="Avatar"
-          className="avatar image"
+          className={className}
           height={size}
           src={avatarUrl}
           style={{ height: size, width: size }}
@@ -54,6 +56,6 @@ export function ShowAvatar({
           style={{ height: size, width: size }}
         />
       )}
-    </div>
+    </>
   );
 }

@@ -153,7 +153,7 @@ export const Navbar = () => {
               avatarProps={{
                 src: avatarUrl || "",
               }}
-              className="bg-foreground p-2"
+              className="text-foreground"
               description={profile?.julukan}
               href="/usr"
               name={profile?.nama_lengkap}
@@ -190,6 +190,7 @@ export const Navbar = () => {
             avatarProps={{
               src: avatarUrl || "",
             }}
+            className="text-foreground"
             description={profile?.julukan}
             href="/usr"
             name={profile?.nama_lengkap}

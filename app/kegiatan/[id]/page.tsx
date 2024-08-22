@@ -62,10 +62,12 @@ export default async function KegiatanDetail({
           .sort((a, b) => a.no - b.no)
           .map((p: DBParagraph, i) => (
             <>
-              {p.type == paragraphType.REGULAR && <p key={i}>{p.text}</p>}
+              {p.type == paragraphType.REGULAR && (
+                <p key={[i.toString(), p.type].join(".")}>{p.text}</p>
+              )}
               {p.type == paragraphType.QUOTE && (
                 <Snippet
-                  key={i}
+                  key={[i.toString(), p.type].join(".")}
                   hideCopyButton
                   hideSymbol
                   className="custom-quote"
