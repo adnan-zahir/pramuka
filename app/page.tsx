@@ -77,9 +77,15 @@ export default async function Home() {
       </Section>
       {/* HERO::END */}
       {/* KEGIATAN::START */}
-      <Section>
-        <Kegiatan kegiatans={kegiatans} />
-      </Section>
+      <div className="relative">
+        <div
+          className="absolute inset-0 mt-4 text-slate-900 shadow-inner shadow-black bg-fixed bg-center bg-no-repeat bg-cover -mx-6 flex justify-center -z-50"
+          style={{ backgroundImage: "url(/explorer_orange_sunset.jpg)" }}
+        />
+        <Section>
+          <Kegiatan kegiatans={kegiatans} />
+        </Section>
+      </div>
       {/* KEGIATAN::END */}
       {/* GALERI::START */}
       <Section>

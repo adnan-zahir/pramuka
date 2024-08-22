@@ -1,3 +1,7 @@
+"use client";
+
+import { useState, useEffect } from "react";
+
 import { Divider } from "@nextui-org/divider";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { Card, CardFooter } from "@nextui-org/card";
@@ -8,15 +12,38 @@ import { title } from "../primitives";
 
 import { siteConfig } from "@/config/site";
 import { DBKegiatan } from "@/types";
+import clsx from "clsx";
 
 export default function Kegiatan({ kegiatans }: { kegiatans: DBKegiatan[] }) {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const SCROLL_TRESHOLD = 300;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > SCROLL_TRESHOLD);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scoll", handleScroll);
+  }, []);
   return (
     <>
       <Divider />
-      <div className="w-full block max-w-xl text-center justify-center uppercase md:justify-start md:text-left">
+      <div
+        className={clsx(
+          "w-full block max-w-xl text-center justify-center uppercase md:justify-start md:text-left transition-colors duration-500",
+          isScrolled ? "text-slate-900" : "text-slate-50",
+        )}
+      >
         <h1 className={title()}>{siteConfig.navMenuItems[1].label}</h1>
       </div>
-      <p className="w-full block max-w-xl mb-4 text-justify justify-center md:justify-start md:text-left">
+      <p
+        className={clsx(
+          "w-full block max-w-xl mb-4 text-justify justify-center md:justify-start md:text-left",
+          isScrolled ? "text-slate-900" : "text-slate-50",
+        )}
+      >
         Berikut beberapa kegiatan terbaru Graha Pancaka yang menarik untuk
         kakak-kakak simak. Ayo lihat keseruannya!
       </p>
